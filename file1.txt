@@ -1,1 +1,38 @@
 this is durga prasad first example file of git
+Gitflow Workflow
+ref: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+Gitflow is ideally suited for projects that have a scheduled release cycle. 
+This workflow doesn't add any new concepts or commands beyond what's required for the Feature Branch Workflow. Instead, it assigns very specific roles to different branches and defines how and when they should interact.
+'Git-Flow' tool-set can be used
+Develop and Master Branches
+The master branch stores the official release history, and the develop branch serves as an integration branch for features.
+Feature Branches
+Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. 
+But, instead of branching off of master, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. 
+Features should never interact directly with master.
+Release Branches
+Once develop has acquired enough features for a release (or a predetermined release date is approaching), you fork a release branch off of develop.
+Creating this branch starts the next release cycle, so no new features can be added after this point—only bug fixes, documentation generation, and other release-oriented tasks should go in this branch
+Once it's ready to ship, the release branch gets merged into master and tagged with a version number. In addition, it should be merged back into develop, which may have progressed since the release was initiated.
+Hotfix Branches
+Maintenance or "hotfix" branches are used to quickly patch production releases. 
+This is the only branch that should fork directly off of master. As soon as the fix is complete, it should be merged into both master and develop (or the current release branch), and master should be tagged with an updated version number.
+Overall Flow
+A develop branch is created from master
+A release branch is created from develop
+Feature branches are created from develop
+When a feature is complete it is merged into the develop branch
+When the release branch is done it is merged into develop and master
+If an issue in master is detected a hotfix branch is created from master
+Once the hotfix is complete it is merged to both develop and master
+**Feature Branch Workflow**
+ref: https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
+The core idea behind the Feature Branch Workflow is that all feature development should take place in a dedicated branch instead of the master branch.
+This encapsulation makes it easy for multiple developers to work on a particular feature without disturbing the main codebase. 
+It also means the master branch will never contain broken code, which is a huge advantage for continuous integration environments.
+Encapsulating feature development also makes it possible to leverage pull requests
+Feature branches should have descriptive names, like animated-menu-items or issue-#1061. The idea is to give a clear, highly-focused purpose to each branch.
+Feature Branch can be integrated with Master branch using two techniques
+Merge
+Fast-forward Merge (rebase the feature branch on to the tip of the master)
+Utilizing git rebase during the review and merge stages of a feature branch will create enforce a cohesive Git history of feature merges
